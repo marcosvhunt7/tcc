@@ -7,6 +7,7 @@ angular.module('tccApp', [
   'ngRoute',
   'btford.socket-io',
   'ngMaterial',
+  'ngMessages',
   'd3'
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {

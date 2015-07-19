@@ -1,5 +1,52 @@
 <div ng-include="'components/Controllers/navbar/navbar.html'"></div>
 
+
+<div layout="column" layout-align="center center" layout-fill>
+  <form class="formSignUp" name="form" ng-submit="register(form)" novalidate>
+
+    <div layout="column">
+      <md-input-container>
+        <label>Nome</label>
+        <input name="nome" type="text" ng-model="user.name" required>
+        <div ng-messages="form.name.$error">
+          <div ng-message="required">Item Obrigatório.</div>
+          <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
+        </div>
+      </md-input-container>
+      <md-input-container>
+        <label>Email</label>
+        <input name="email" type="email" ng-model="user.email">
+        <div ng-messages="form.email.$error">
+          <div ng-message="required">Item Obrigatório.</div>
+          <div ng-message="form.email.$error.email && submitted">The name has to be less than 30 characters long.</div>
+        <div ng-message="form.email.$error.mongoose">{{ errors.email }}.</div>
+        </div>
+      </md-input-container>
+      <md-input-container>
+        <label>Senha</label>
+        <input type="password" name="password" class="form-control" ng-model="user.password"
+               ng-minlength="3"
+               required
+               mongoose-error/>
+        <div ng-messages="form.password.$error">
+          <div ng-message="required">Item Obrigatório.</div>
+          <div ng-message="(form.password.$error.minlength || form.password.$error.required) && submitted">The name has to be less than 30 characters long.</div>
+          <div ng-message="form.password.$error.mongoose">{{ errors.password }}.</div>
+        </div>
+      </md-input-container>
+    </div>
+    <div layout="row" layout-align="end center">
+      <a class="" href="/login">
+        Login
+      </a>
+      <md-button class="md-primary md-raised" type="submit">
+        Sign up
+      </md-button>
+    </div>
+  </form>
+</div>
+
+<!--
 <div class="container">
   <div class="row">
     <div class="col-sm-12">
@@ -67,4 +114,4 @@
     </div>
   </div>
   <hr>
-</div>
+</div> -->
