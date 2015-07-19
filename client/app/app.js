@@ -5,7 +5,9 @@ angular.module('tccApp', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
-  'btford.socket-io'
+  'btford.socket-io',
+  'ngMaterial',
+  'd3'
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
