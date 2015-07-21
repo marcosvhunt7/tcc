@@ -1,0 +1,29 @@
+/* ------------ layout margin extentions ------------*/
+
+[layout-margin-hor],
+[layout-margin-hor] > [flex],
+[layout-margin-hor] > [flex-gt-sm],
+[layout-margin-hor] > [flex-md],
+[layout-margin-hor] > [flex-lt-lg] {
+ margin: 0 8px; }
+
+[layout-margin-vert],
+[layout-margin-vert] > [flex],
+[layout-margin-vert] > [flex-gt-sm],
+[layout-margin-vert] > [flex-md],
+[layout-margin-vert] > [flex-lt-lg] {
+ margin: 8px 0; }
+
+[layout-padding-hor],
+[layout-padding-hor] > [flex],
+[layout-padding-hor] > [flex-gt-sm],
+[layout-padding-hor] > [flex-md],
+[layout-padding-hor] > [flex-lt-lg] {
+ padding: 0 8px; }
+
+[layout-padding-vert],
+[layout-padding-vert] > [flex],
+[layout-padding-vert] > [flex-gt-sm],
+[layout-padding-vert] > [flex-md],
+[layout-padding-vert] > [flex-lt-lg] {
+ padding: 8px 0; }

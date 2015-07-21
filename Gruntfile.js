@@ -34,7 +34,7 @@ module.exports = function (grunt) {
     },
     express: {
       options: {
-        port: process.env.PORT || 9000
+        port: process.env.PORT || 3000
       },
       dev: {
         options: {
@@ -64,7 +64,8 @@ module.exports = function (grunt) {
       },
       injectCss: {
         files: [
-          '<%= yeoman.client %>/{app,components}/**/**/*.css'
+          '<%= yeoman.client %>/{app,components}/**/**/*.css',
+          '<%= yeoman.client %>/index.css'
         ],
         tasks: ['injector:css']
       },
@@ -85,6 +86,7 @@ module.exports = function (grunt) {
       livereload: {
         files: [
           '{.tmp,<%= yeoman.client %>}/{app,components}/**/**/*.css',
+          '{.tmp,<%= yeoman.client %>}/index.css',
           '{.tmp,<%= yeoman.client %>}/{app,components}/**/**/*.html',
 
           '{.tmp,<%= yeoman.client %>}/{app,components}/**/**/*.js',
@@ -191,7 +193,7 @@ module.exports = function (grunt) {
         options: {
           nodeArgs: ['--debug-brk'],
           env: {
-            PORT: process.env.PORT || 9000
+            PORT: process.env.PORT || 3000
           },
           callback: function (nodemon) {
             nodemon.on('log', function (event) {
@@ -366,7 +368,7 @@ module.exports = function (grunt) {
         expand: true,
         cwd: '<%= yeoman.client %>',
         dest: '.tmp/',
-        src: ['{app,components}/**/**/*.css']
+        src: ['{app,components}/**/**/*.css', 'index.css']
       }
     },
 
@@ -493,7 +495,8 @@ module.exports = function (grunt) {
         },
         files: {
           '<%= yeoman.client %>/index.html': [
-            '<%= yeoman.client %>/{app,components}/**/**/*.css'
+            '<%= yeoman.client %>/{app,components}/**/**/*.css',
+            '<%= yeoman.client %>/index.css'
           ]
         }
       }
