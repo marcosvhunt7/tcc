@@ -1,0 +1,38 @@
+<div ng-include="'components/Controllers/navbar/navbar.html'"></div>
+
+<div layout="column" layout-align="center center" layout-fill>
+  <form class="formLogin" name="form" ng-submit="login(form)" novalidate>
+    <div layout="column">
+      <md-input-container>
+        <label>Email</label>
+        <input name="email" type="email" ng-model="user.email" required>
+        <div ng-messages="form.email.$error">
+          <div ng-message="required">Item Obrigatório.</div>
+          <div ng-message="form.email.$error.required && submitted">Por favor, entre com um email valido.</div>
+        </div>
+      </md-input-container>
+      <md-input-container>
+        <label>Senha</label>
+        <input name="password" type="password" ng-model="user.password" required>
+        <div ng-messages="form.password.$error">
+          <div ng-message="required">Item Obrigatório.</div>
+          <div ng-message="form.password.$error.required && submitted">Por favor, entre com sua senha.</div>
+        </div>
+      </md-input-container>
+    </div>
+
+    <div layout="column" layout-align="center end">
+      <span class="md-subhead errorMessage">{{ errors.other }}</span>
+    </div>
+
+    <div layout="row" layout-align="end center">
+      <a class="" href="/signup">
+        Register
+      </a>
+      <md-button class="md-primary md-raised" type="submit">
+        Login
+      </md-button>
+    </div>
+
+  </form>
+</div>

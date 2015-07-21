@@ -1,0 +1,117 @@
+<div ng-include="'components/Controllers/navbar/navbar.html'"></div>
+
+
+<div layout="column" layout-align="center center" layout-fill>
+  <form class="formSignUp" name="form" ng-submit="register(form)" novalidate>
+
+    <div layout="column">
+      <md-input-container>
+        <label>Nome</label>
+        <input name="nome" type="text" ng-model="user.name" required>
+        <div ng-messages="form.name.$error">
+          <div ng-message="required">Item Obrigatório.</div>
+          <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
+        </div>
+      </md-input-container>
+      <md-input-container>
+        <label>Email</label>
+        <input name="email" type="email" ng-model="user.email">
+        <div ng-messages="form.email.$error">
+          <div ng-message="required">Item Obrigatório.</div>
+          <div ng-message="form.email.$error.email && submitted">The name has to be less than 30 characters long.</div>
+        <div ng-message="form.email.$error.mongoose">{{ errors.email }}.</div>
+        </div>
+      </md-input-container>
+      <md-input-container>
+        <label>Senha</label>
+        <input type="password" name="password" class="form-control" ng-model="user.password"
+               ng-minlength="3"
+               required
+               mongoose-error/>
+        <div ng-messages="form.password.$error">
+          <div ng-message="required">Item Obrigatório.</div>
+          <div ng-message="(form.password.$error.minlength || form.password.$error.required) && submitted">The name has to be less than 30 characters long.</div>
+          <div ng-message="form.password.$error.mongoose">{{ errors.password }}.</div>
+        </div>
+      </md-input-container>
+    </div>
+    <div layout="row" layout-align="end center">
+      <a class="" href="/login">
+        Login
+      </a>
+      <md-button class="md-primary md-raised" type="submit">
+        Sign up
+      </md-button>
+    </div>
+  </form>
+</div>
+
+<!--
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>Sign up</h1>
+    </div>
+    <div class="col-sm-12">
+      <form class="form" name="form" ng-submit="register(form)" novalidate>
+
+        <div class="form-group" ng-class="{ 'has-success': form.name.$valid && submitted,
+                                            'has-error': form.name.$invalid && submitted }">
+          <label>Name</label>
+
+          <input type="text" name="name" class="form-control" ng-model="user.name"
+                 required/>
+          <p class="help-block" ng-show="form.name.$error.required && submitted">
+            A name is required
+          </p>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-success': form.email.$valid && submitted,
+                                            'has-error': form.email.$invalid && submitted }">
+          <label>Email</label>
+
+          <input type="email" name="email" class="form-control" ng-model="user.email"
+                 required
+                 mongoose-error/>
+          <p class="help-block" ng-show="form.email.$error.email && submitted">
+            Doesn't look like a valid email.
+          </p>
+          <p class="help-block" ng-show="form.email.$error.required && submitted">
+            What's your email address?
+          </p>
+          <p class="help-block" ng-show="form.email.$error.mongoose">
+            {{ errors.email }}
+          </p>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-success': form.password.$valid && submitted,
+                                            'has-error': form.password.$invalid && submitted }">
+          <label>Password</label>
+
+          <input type="password" name="password" class="form-control" ng-model="user.password"
+                 ng-minlength="3"
+                 required
+                 mongoose-error/>
+          <p class="help-block"
+             ng-show="(form.password.$error.minlength || form.password.$error.required) && submitted">
+            Password must be at least 3 characters.
+          </p>
+          <p class="help-block" ng-show="form.password.$error.mongoose">
+            {{ errors.password }}
+          </p>
+        </div>
+
+        <div>
+          <button class="btn btn-inverse btn-lg btn-login" type="submit">
+            Sign up
+          </button>
+          <a class="btn btn-default btn-lg btn-register" href="/login">
+            Login
+          </a>
+        </div>
+
+      </form>
+    </div>
+  </div>
+  <hr>
+</div> -->
