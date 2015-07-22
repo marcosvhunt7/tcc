@@ -30,6 +30,14 @@ angular.module('tccApp')
       socket.unsyncUpdates('thing');
     });
 
+    $scope.deleteUpload = function(upload) {
+      $http.delete('/api/uploads/' + upload._id);
+    };
+
+    $scope.$on('$destroy', function () {
+      socket.unsyncUpdates('upload');
+    });
+
 
     $scope.$watch('files', function () {
         $scope.upload($scope.files);
@@ -37,17 +45,19 @@ angular.module('tccApp')
     $scope.log = '';
 
     $scope.addUpload = function() {
-      if($scope.newThing === '') {
-        return;
-      }
-      $http.post('/api/uploads', {
-                                    name: 'Marcos Brito',
-                                    data: new Date,
-                                    time: '135',
-                                    tipo: '10c',
-                                    valor: '1500'
-                                  });
-      $scope.newThing = '';
+      // if($scope.newThing === '') {
+      //   return;
+      // }
+      // $http.post('/api/uploads', {
+      //                               name: 'Marcos Brito',
+      //                               data: new Date,
+      //                               time: '135',
+      //                               tipo: '10c',
+      //                               valor: '1500'
+      //                             });
+      // $scope.newThing = '';
+
+        $http.delete('/api/uploadsFile');
     };
 
     $scope.upload = function (files) {
@@ -55,7 +65,7 @@ angular.module('tccApp')
             for (var i = 0; i < files.length; i++) {
                 var file = files[i];
                 Upload.upload({
-                    url: '/',
+                    url: '/api/uploadsFile',
                     fields: {
                         'username': $scope.username
                     },

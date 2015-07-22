@@ -37,6 +37,7 @@ exports.create = function(req, res) {
   });
 };
 
+
 // Deletes a upload from the DB.
 exports.destroy = function(req, res) {
   Upload.findById(req.params.id, function (err, upload) {
