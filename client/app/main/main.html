@@ -1,12 +1,43 @@
 <div ng-include="'components/Controllers/navbar/navbar.html'"></div>
 
-<header class="hero-unit" id="banner">
+<div class="hero-unit" id="banner">
   <div class="container">
     <h1>'Allo, 'Allo!</h1>
     <p class="lead">Kick-start your next web app with Angular Fullstack</p>
     <img src="assets/images/yeoman.png" alt="I'm Yeoman">
   </div>
-</header>
+</div>
+
+    <input type="text" ng-model="username"></br></br>
+    <input type="checkbox" ng-model="multiple">upload multiple file</br></br>
+    watching model:
+    <div class="button" ngf-select ng-model="files" ngf-multiple="multiple">Select File</div>
+    on file change:
+    <div class="button" ngf-select ngf-change="upload($files)" ngf-multiple="multiple">Select File</div>
+    Drop File:
+    <div ngf-drop ngf-select ng-model="files" class="drop-box"
+        ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
+        accept="image/*,application/pdf">Drop pdfs or images here or click to upload</div>
+    <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+    Files:
+    <ul>
+        <li ng-repeat="f in files" style="font:smaller">{{f.name}}</li>
+    </ul>
+    Upload Log:
+    <pre>{{log}}</pre>
+
+    <md-button ng-click="addUpload()" class="md-primary md-raised" type="submit">
+      adiciona em uploads
+    </md-button>
+
+    <div class="row">
+      <div class="col-lg-12">
+        <h1 class="page-header">Upload:</h1>
+        <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="upload in awesomeUploads">
+          <li><a href="#" tooltip="{{upload}}">{{upload}}</a></li>
+        </ul>
+      </div>
+    </div>
 
 <div class="container">
   <div class="row">

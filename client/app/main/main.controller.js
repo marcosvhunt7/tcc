@@ -1,12 +1,17 @@
 'use strict';
 
 angular.module('tccApp')
-  .controller('MainCtrl', function ($scope, $http, socket) {
+  .controller('MainCtrl', ['$timeout', 'Upload', '$scope', '$http', 'socket', function ($timeout, Upload, $scope, $http, socket) {
     $scope.awesomeThings = [];
 
     $http.get('/api/things').success(function(awesomeThings) {
       $scope.awesomeThings = awesomeThings;
       socket.syncUpdates('thing', $scope.awesomeThings);
+    });
+
+    $http.get('/api/uploads').success(function(awesomeUploads) {
+      $scope.awesomeUploads = awesomeUploads;
+      socket.syncUpdates('upload', $scope.awesomeUploads);
     });
 
     $scope.addThing = function() {
@@ -24,4 +29,52 @@ angular.module('tccApp')
     $scope.$on('$destroy', function () {
       socket.unsyncUpdates('thing');
     });
-  });
+
+
+    $scope.$watch('files', function () {
+        $scope.upload($scope.files);
+    });
+    $scope.log = '';
+
+    $scope.addUpload = function() {
+      if($scope.newThing === '') {
+        return;
+      }
+      $http.post('/api/uploads', {
+                                    name: 'Marcos Brito',
+                                    data: new Date,
+                                    time: '135',
+                                    tipo: '10c',
+                                    valor: '1500'
+                                  });
+      $scope.newThing = '';
+    };
+
+    $scope.upload = function (files) {
+        if (files && files.length) {
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                Upload.upload({
+                    url: '/',
+                    fields: {
+                        'username': $scope.username
+                    },
+                    file: file
+                }).progress(function (evt) {
+                    var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                    $scope.log = 'progress: ' + progressPercentage + '% ' +
+                                evt.config.file.name + '\n' + $scope.log;
+                }).success(function (data, status, headers, config) {
+                    $timeout(function() {
+                        $scope.log = 'file: ' + config.file.name + ', Response: ' + JSON.stringify(data) + '\n' + $scope.log;
+                    });
+                })
+                .error(function (data, status, headers, config) {
+                    $timeout(function() {
+                        $scope.log = 'file: ' + config.file.name + ', Response: ' + JSON.stringify(data) + '\n' + $scope.log;
+                    });
+                });
+            }
+        }
+    };
+  }]);

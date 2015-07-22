@@ -8,7 +8,8 @@ angular.module('tccApp', [
   'btford.socket-io',
   'ngMaterial',
   'ngMessages',
-  'd3'
+  'd3',
+  'ngFileUpload'
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
