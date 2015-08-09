@@ -67,7 +67,9 @@ angular.module('tccApp')
                 Upload.upload({
                     url: '/api/uploadsFile',
                     fields: {
-                        'username': $scope.username
+                        name: 'Marcos Brito',
+                        car: 'Cross Fox 2011',
+                        data: new Date(),
                     },
                     file: file
                 }).progress(function (evt) {
@@ -76,8 +78,9 @@ angular.module('tccApp')
                                 evt.config.file.name + '\n' + $scope.log;
                 }).success(function (data, status, headers, config) {
                     $timeout(function() {
-                        $scope.log = 'file: ' + config.file.name + ', Response: ' + JSON.stringify(data) + '\n' + $scope.log;
+                        $scope.log = "Upload terminado com sucesso.";
                     });
+                    $http.delete('/api/uploadsFile');
                 })
                 .error(function (data, status, headers, config) {
                     $timeout(function() {

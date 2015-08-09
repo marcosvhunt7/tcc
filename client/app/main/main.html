@@ -1,30 +1,35 @@
 <div ng-include="'components/Controllers/navbar/navbar.html'"></div>
 
-<div class="hero-unit" id="banner">
-  <div class="container">
-    <h1>'Allo, 'Allo!</h1>
-    <p class="lead">Kick-start your next web app with Angular Fullstack</p>
-    <img src="assets/images/yeoman.png" alt="I'm Yeoman">
-  </div>
-</div>
-
-    <input type="text" ng-model="username"></br></br>
-    <input type="checkbox" ng-model="multiple">upload multiple file</br></br>
-    watching model:
-    <div class="button" ngf-select ng-model="files" ngf-multiple="multiple">Select File</div>
-    on file change:
-    <div class="button" ngf-select ngf-change="upload($files)" ngf-multiple="multiple">Select File</div>
-    Drop File:
-    <div ngf-drop ngf-select ng-model="files" class="drop-box"
-        ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
-        accept="image/*,application/pdf">Drop pdfs or images here or click to upload</div>
-    <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
-    Files:
-    <ul>
-        <li ng-repeat="f in files" style="font:smaller">{{f.name}}</li>
-    </ul>
+  <md-content layout="column" layout-align="center center">
+    <span class="md-body-1" layout>Arraste aqui o seu arquivo csv para a analisar junto com a base de dados arual</span>
+    <div layout="row" layout-align="space-between center">
+      <div layout="row" layout-align="space-between center">
+        <input type="checkbox" ng-model="multiple">
+        <span class="md-body-1" layout>upload multiple file</span>
+      </div>
+      <div layout="row" layout-align="space-between center">
+        <span class="md-body-1" layout>watching model:</span>
+        <md-button class="md-primary md-raised" ngf-select ng-model="files" ngf-multiple="true"> teste </md-button>
+        <div class="button" ngf-select ng-model="files" ngf-multiple="multiple">Select File</div>
+      </div>
+      <div layout="row" layout-align="space-between center">
+        <span class="md-body-1" layout>on file change:</span>
+        <div class="button" ngf-select ngf-change="upload($files)" ngf-multiple="multiple">Select File</div>
+      </div>
+    </div>
+    <div layout="row" layout-align="space-between center">
+      <span class="md-body-1" layout>Drop File:</span>
+      <div ngf-drop ngf-select ng-model="files" class="drop-box"
+          ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
+          accept="image/*,application/pdf">Drop pdfs or images here or click to upload</div>
+      <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+      <span class="md-body-1" layout>Files:</span>
+      <ul>
+          <li ng-repeat="f in files" style="font:smaller">{{f.name}}</li>
+      </ul>
+    </div>
     Upload Log:
-    <pre>{{log}}</pre>
+    <pre>{{log | json}}</pre>
 
     <md-button ng-click="addUpload()" class="md-primary md-raised" type="submit">
       adiciona em uploads
@@ -39,7 +44,9 @@
       </div>
     </div>
 
-<div class="container">
+  </md-content>
+
+<!-- <div class="container">
   <div class="row">
     <div class="col-lg-12">
       <h1 class="page-header">Features:</h1>
@@ -58,12 +65,4 @@
       </span>
     </p>
   </form>
-</div>
-
-<footer class="footer">
-  <div class="container">
-      <p>Angular Fullstack v2.1.0 |
-        <a href="https://twitter.com/tyhenkel">@tyhenkel</a> |
-         <a href="https://github.com/DaftMonk/generator-angular-fullstack/issues?state=open">Issues</a></p>
-  </div>
-</footer>
+</div> -->

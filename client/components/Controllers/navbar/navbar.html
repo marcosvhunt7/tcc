@@ -1,29 +1,29 @@
 <section class="content" ng-controller="NavbarCtrl" layout="row" layout-align="space-between center">
-  <div layout="row" layout-align="start center">
-    <div class="logo" layout-margin-hor>
+  <div layout="row" layout-align="start center" layout fill>
+    <div class="logo menus" layout-margin-hor layout="row" layout-align="center center">
       <a href="/" class="navbar-brand">tcc</a>
     </div>
-    <div ng-repeat="item in menu" ng-class="{active: isActive(item.link)}" layout-margin-hor>
+    <div ng-repeat="item in menu" class="menus" ng-class="{active: isActive(item.link)}" layout-margin-hor layout="row" layout-align="center center">
         <a ng-href="{{item.link}}">{{item.title}}</a>
     </div>
-    <div ng-show="isAdmin()" ng-class="{active: isActive('/admin')}" layout-margin-hor>
+    <div ng-show="isAdmin()" class="menus" ng-class="{active: isActive('/admin')}" layout-margin-hor layout="row" layout-align="center center">
       <a href="/admin">Admin</a>
     </div>
   </div>
-  <div layout="row" layout-align="end center">
-    <div ng-hide="isLoggedIn()" ng-class="{active: isActive('/signup')}" layout-margin-hor>
+  <div layout="row" layout-align="end center" layout-fill>
+    <div ng-hide="isLoggedIn()" class="menus" ng-class="{active: isActive('/signup')}" layout-margin-hor layout="row" layout-align="center center">
       <a href="/signup">Sign up</a>
     </div>
-    <div ng-hide="isLoggedIn()" ng-class="{active: isActive('/login')}" layout-margin-hor>
+    <div ng-hide="isLoggedIn()" class="menus" ng-class="{active: isActive('/login')}" layout-margin-hor layout="row" layout-align="center center">
       <a href="/login">Login</a>
     </div>
-    <div ng-show="isLoggedIn()" layout-margin-hor>
+    <div ng-show="isLoggedIn()" layout-margin-hor layout="row" layout-align="center center">
       <p class="navbar-text">Hello {{ getCurrentUser().name }}</p>
     </div>
-    <div ng-show="isLoggedIn()" ng-class="{active: isActive('/settings')}" layout-margin-hor>
+    <div ng-show="isLoggedIn()" class="menus" ng-class="{active: isActive('/settings')}" layout-margin-hor layout="row" layout-align="center center">
       <a href="/settings"><span class="glyphicon glyphicon-cog"></span></a>
     </div>
-    <div ng-show="isLoggedIn()" ng-class="{active: isActive('/logout')}" layout-margin-hor>
+    <div ng-show="isLoggedIn()" class="menus" ng-class="{active: isActive('/logout')}" layout-margin-hor layout="row" layout-align="center center">
       <a href="" ng-click="logout()">Logout</a>
     </div>
   </div>
