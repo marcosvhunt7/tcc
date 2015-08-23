@@ -12,8 +12,11 @@
 var _ = require('lodash')
   , path = require('path')
   , fs = require('fs')
+  , jsonfile = require('jsonfile')
+  , nameJSON = 'data.json'
   , Converter = require("csvtojson").Converter
   , dirPath = __dirname + '/../../../server/uploads/'
+  , Upload = require('./uploadFile.model')
   , converter = new Converter(
   {
     constructResult: true
@@ -66,8 +69,16 @@ exports.create = function(req, res, next)
       dados: req.body,
       dadosRegistrados: jsonFile
     };
-    console.log(data);
-    return res.status(201).json(data);
+
+    //jsonfile.writeFileSync(dirPath + nameJSON, data);
+
+    Upload.create(data, function(err, upload) {
+      if(err) { return handleError(res, err); }
+      return res.status(201);
+    });
+
+    //console.log(data);
+    //return res.status(201);
   });
 
   fs.createReadStream(file.path).pipe(converter);

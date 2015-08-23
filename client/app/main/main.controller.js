@@ -80,7 +80,7 @@ angular.module('tccApp')
                     $timeout(function() {
                         $scope.log = "Upload terminado com sucesso.";
                     });
-                    $http.delete('/api/uploadsFile');
+                    //$http.delete('/api/uploadsFile');
                 })
                 .error(function (data, status, headers, config) {
                     $timeout(function() {

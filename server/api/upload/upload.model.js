@@ -11,4 +11,4 @@ var UploadSchema = new Schema({
   valor: String
 });
 
-module.exports = mongoose.model('Upload', UploadSchema);
+module.exports = mongoose.model('Uploads', UploadSchema);
